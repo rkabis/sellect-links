@@ -128,7 +128,7 @@ const LocationAutocomplete = (props: Props) => {
       value={value}
       onChange={(event: any, newValue: any) => {
         setOptions(newValue ? [newValue, ...options] : options)
-        setValue(newValue)
+        setValue(newValue.description)
       }}
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue)

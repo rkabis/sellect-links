@@ -1,11 +1,13 @@
 import React, { ReactElement } from 'react'
 
+import { useMutation } from '@apollo/react-hooks'
+import { CREATE_LINK } from '../utils/gqlMutations'
+
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import LocationAutocomplete from '../components/LocationAutocomplete'
-import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
 import TextField from '@material-ui/core/TextField'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,13 +37,26 @@ const GenerateLink = (): ReactElement => {
   const [from, setFrom] = React.useState(null)
   const [contactNumber, setContactNumber] = React.useState('')
   const [businessName, setBusinessName] = React.useState('')
-  const [size, setSize] = React.useState('small')
   const classes = useStyles()
+  const [createLink, { loading }] = useMutation(CREATE_LINK)
 
-  const isButtonDisabled = from == null || email == '' || contactNumber == '' || businessName == ''
+  const isButtonDisabled = from == null || email == '' || contactNumber == '' || businessName == '' || loading
 
-  const handleConfirm = () => {
-    console.log('confirm')
+  const handleConfirm = async () => {
+    const { data } = await createLink({
+      variables: {
+        businessName: businessName,
+        businessEmail: email,
+        businessLocation: from,
+        businessContactNumber: contactNumber
+      }
+    })
+
+    if (data) {
+      if (data.createLink.isSuccessful) {
+        console.log(data.createLink.linkId)
+      }
+    }
   }
 
   return (
@@ -69,22 +84,13 @@ const GenerateLink = (): ReactElement => {
         value={contactNumber}
         onChange={e => setContactNumber(e.target.value)}
       />
-      <Select
-        value={size}
-        className={classes.selectField}
-        onChange={ev => setSize(ev.target.value as string)}
-      >
-        <MenuItem value={'small'}>{'Motorcycle (up to 20kg)'}</MenuItem>
-        <MenuItem value={'medium'}>{'Car (up to 300kg)'}</MenuItem>
-        <MenuItem value={'large'}>{'Van (up to 600kg)'}</MenuItem>
-      </Select>
       <Button
         variant='contained'
         className={classes.button}
-        onClick={(): void => handleConfirm()}
+        onClick={(): Promise<void> => handleConfirm()}
         disabled={isButtonDisabled}
       >
-        {'CONFIRM'}
+        { loading ? <CircularProgress /> : 'CONFIRM' }
       </Button>
     </div>
   )
