@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
 
 import priceFormatter from '../utils/priceFormatter'
-import { trackChoice } from '../utils/airtableAnalytics'
 import { sizeLabeler } from '../utils/sizeLabeler'
 import getVehicleImage from '../utils/getVehicleImage'
 import getProviderImage from '../utils/getProviderImage'
@@ -76,15 +75,6 @@ const Quotation = (props: Props): ReactElement => {
   const classes = useStyles()
   const date = new Date()
 
-  const handleTrackProvider = () => {
-    trackChoice({
-      provider,
-      date,
-      cookie,
-      fee
-    })
-  }
-
   const vehicle = sizeLabeler(provider, size)
 
   return (
@@ -131,7 +121,6 @@ const Quotation = (props: Props): ReactElement => {
               <Button
                 className={classes.button}
                 variant='contained'
-                onClick={() => handleTrackProvider()}
                 disabled={(!vehicle || url == null) && true}
               >
                 {(!vehicle || url == null) ? 'SOON' :'BOOK'}

@@ -40,6 +40,10 @@ const GenerateLink = (): ReactElement => {
 
   const isButtonDisabled = from == null || email == '' || contactNumber == '' || businessName == ''
 
+  const handleConfirm = () => {
+    console.log('confirm')
+  }
+
   return (
     <div className={classes.root}>
       <TextField
@@ -77,7 +81,7 @@ const GenerateLink = (): ReactElement => {
       <Button
         variant='contained'
         className={classes.button}
-        onClick={(): void => onSearch()}
+        onClick={(): void => handleConfirm()}
         disabled={isButtonDisabled}
       >
         {'CONFIRM'}
