@@ -14,13 +14,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     paddingTop: theme.spacing(3)
   },
-  share: {
-    backgroundColor: 'white',
-    marginTop: theme.spacing(1),
-    color: 'black',
-    '&:hover': {
-      backgroundColor: 'gray'
-    }
+  button: {
+    marginTop: theme.spacing(1)
   }
 }))
 
@@ -54,9 +49,12 @@ const LinkDetails = (props: Props): ReactElement => {
       <Typography>{data.businessContactNumber}</Typography>
       <Typography>{data.businessLocation}</Typography>
       <Button
+        variant='contained'
         onClick={() => handleShare()}
-        className={classes.share}
-      >{'Share'}</Button>
+        className={classes.button}
+      >
+        {'Share'}
+      </Button>
     </div>
   )
 }

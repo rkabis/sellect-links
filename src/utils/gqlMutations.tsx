@@ -20,3 +20,26 @@ export const CREATE_LINK = gql`
 	  }
 	}
 `
+
+export const CREATE_QUOTATION = gql`
+	mutation CREATE_QUOTATION(
+	  $linkId: String!
+	  $customerNumber: String
+	  $customerEmail: String
+	  $customerLocation: String!
+	  $vehicleType: String!
+	) {
+	  createQuotation(
+	    input: {
+	      linkId: $linkId
+	      customerEmail: $customerEmail
+	      customerNumber: $customerNumber
+	      customerLocation: $customerLocation
+	      vehicleType: $vehicleType
+	    }
+	  ) {
+	    isSuccessful
+	    quotationId
+	  }
+	}
+`

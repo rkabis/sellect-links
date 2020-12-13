@@ -134,7 +134,7 @@ const LocationAutocomplete = (props: Props) => {
         setInputValue(newInputValue)
       }}
       renderInput={(params) => (
-        <TextField {...params} label={label} fullWidth />
+        <TextField required {...params} label={label} fullWidth />
       )}
       renderOption={(option) => {
         const matches = option.structured_formatting.main_text_matched_substrings
