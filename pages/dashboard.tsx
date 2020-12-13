@@ -6,11 +6,11 @@ import { VIEW_LINK } from '../src/utils/gqlQueries'
 
 import { useQuery } from '@apollo/react-hooks'
 
-import LinkDetailsModule from '../src/modules/LinkDetails'
+import LinkDashboardModule from '../src/modules/LinkDashboard'
 
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-const LinkDetails: NextPage = (): ReactElement => {
+const LinkDashboard: NextPage = (): ReactElement => {
   const router = useRouter()
 
   const { data, loading, error } = useQuery(VIEW_LINK, {
@@ -25,9 +25,9 @@ const LinkDetails: NextPage = (): ReactElement => {
 
   return (
     <div>
-      { loading ? <CircularProgress /> : <LinkDetailsModule data={data.getLink} /> }
+      { loading ? <CircularProgress /> : <LinkDashboardModule data={data.getLink} /> }
     </div>
   )
 }
 
-export default LinkDetails
+export default LinkDashboard
