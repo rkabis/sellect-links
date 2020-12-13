@@ -25,20 +25,22 @@ interface Props {
 
 const LinkDetails = (props: Props): ReactElement => {
   const { data } = props
+  const [hasCopied, setHasCopied] = React.useState(false)
   const classes = useStyles()
 
   const handleShare = async () => {
-    const domain = window.location.hostname
-    const url = `${domain}/link?id=${data.linkId}`
-
     if (navigator.share) {
+      const url = `/link?id=${data.linkId}`
       navigator.share({
         title: 'Sellect Links',
         text: 'Share you link!',
         url
       })
     } else {
+      const url = `${window.location.hostname}/link?id=${data.linkId}`
+
       navigator.clipboard.writeText(url)
+      setHasCopied(true)
     }
   }
 
@@ -53,8 +55,9 @@ const LinkDetails = (props: Props): ReactElement => {
         variant='contained'
         onClick={() => handleShare()}
         className={classes.button}
+        disabled={hasCopied}
       >
-        {'Share'}
+        { hasCopied ? 'Copied' : 'Share' }
       </Button>
     </div>
   )
