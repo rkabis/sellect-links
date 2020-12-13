@@ -33,7 +33,7 @@ const LinkDetails = (props: Props): ReactElement => {
       const url = `/link?id=${data.linkId}`
       navigator.share({
         title: 'Sellect Links',
-        text: 'Share you link!',
+        text: 'Share your link!',
         url
       })
     } else {
