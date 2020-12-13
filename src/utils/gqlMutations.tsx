@@ -43,3 +43,11 @@ export const CREATE_QUOTATION = gql`
 	  }
 	}
 `
+
+export const UPDATE_LINKVIEW = gql`
+	mutation UPDATE_LINKVIEW($linkId: String!) {
+	  updateLinkView(linkId: $linkId) {
+	    isSuccessful
+	  }
+	}
+`

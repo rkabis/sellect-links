@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react'
 import { useRouter } from 'next/router'
 
 import { useMutation } from '@apollo/react-hooks'
-import { CREATE_QUOTATION } from '../utils/gqlMutations'
+import { CREATE_QUOTATION, UPDATE_LINKVIEW } from '../utils/gqlMutations'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
@@ -57,6 +57,11 @@ const UseLink = (props: Props): ReactElement => {
   const router = useRouter()
 
   const [createQuotation, { loading }] = useMutation(CREATE_QUOTATION)
+  const [updateLinkView] = useMutation(UPDATE_LINKVIEW)
+
+  React.useEffect(() => {
+    updateLinkView({ variables: { linkId: data.linkId } })
+  }, [])
 
   const handleBook = async () => {
     const { data: quotationData } = await createQuotation({

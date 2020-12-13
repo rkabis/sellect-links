@@ -48,6 +48,7 @@ const LinkDetails = (props: Props): ReactElement => {
       <Typography>{data.businessEmail}</Typography>
       <Typography>{data.businessContactNumber}</Typography>
       <Typography>{data.businessLocation}</Typography>
+      <Typography>{`Views: ${data.views}`}</Typography>
       <Button
         variant='contained'
         onClick={() => handleShare()}

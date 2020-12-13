@@ -8,6 +8,7 @@ export const VIEW_LINK = gql`
 	    businessName
 	    businessContactNumber
 	    linkId
+	    views
 	  }
 	}
 `
