@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const CREATE_LINK = gql`
 	mutation CREATE_LINK(
-	  $businessContactNumber: String!
+	  $businessContactNumber: String
 	  $businessName: String!
 	  $businessEmail: String!
 	  $businessLocation: String!
