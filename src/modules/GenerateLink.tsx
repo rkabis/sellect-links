@@ -1,5 +1,7 @@
 import React, { ReactElement } from 'react'
 
+import { useRouter } from 'next/router'
+
 import { useMutation } from '@apollo/react-hooks'
 import { CREATE_LINK } from '../utils/gqlMutations'
 
@@ -37,7 +39,9 @@ const GenerateLink = (): ReactElement => {
   const [from, setFrom] = React.useState(null)
   const [contactNumber, setContactNumber] = React.useState('')
   const [businessName, setBusinessName] = React.useState('')
+
   const classes = useStyles()
+  const router = useRouter()
   const [createLink, { loading }] = useMutation(CREATE_LINK)
 
   const isButtonDisabled = from == null || email == '' || contactNumber == '' || businessName == '' || loading
@@ -54,7 +58,7 @@ const GenerateLink = (): ReactElement => {
 
     if (data) {
       if (data.createLink.isSuccessful) {
-        console.log(data.createLink.linkId)
+        router.push(`/details?id=${data.createLink.linkId}`)
       }
     }
   }
