@@ -55,7 +55,8 @@ const GenerateLink = (): ReactElement => {
         businessName: businessName,
         businessEmail: email,
         businessLocation: from,
-        businessContactNumber: contactNumber
+        businessContactNumber: contactNumber,
+        businessPhoto: url
       }
     })
 

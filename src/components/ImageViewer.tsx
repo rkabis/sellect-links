@@ -20,7 +20,7 @@ const ImageViewer = (props: Props): ReactElement => {
   return (
     <React.Fragment>
       {
-        url
+        (url && url !== '')
           ? <img src={url} className={classes.photo} />
           : <img src={'./businessPhotoPlaceholder.png'} className={classes.photo} />
       }

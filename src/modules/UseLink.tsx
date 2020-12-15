@@ -15,6 +15,8 @@ import TextField from '@material-ui/core/TextField'
 import LocationAutocomplete from '../components/LocationAutocomplete'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
+import ImageViewer from '../components/ImageViewer'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -85,6 +87,7 @@ const UseLink = (props: Props): ReactElement => {
 
   return (
     <div className={classes.root}>
+      <ImageViewer url={data.businessPhoto} />
       <Typography>{data.businessName}</Typography>
       <Typography>{data.businessContactNumber}</Typography>
       <Typography>{data.businessLocation}</Typography>

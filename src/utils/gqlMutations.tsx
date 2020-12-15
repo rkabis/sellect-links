@@ -6,6 +6,7 @@ export const CREATE_LINK = gql`
 	  $businessName: String!
 	  $businessEmail: String!
 	  $businessLocation: String!
+	  $businessPhoto: String
 	) {
 	  createLink(
 	    input: {
@@ -13,6 +14,7 @@ export const CREATE_LINK = gql`
 	      businessEmail: $businessEmail
 	      businessLocation: $businessLocation
 	      businessContactNumber: $businessContactNumber
+	      businessPhoto: $businessPhoto
 	    }
 	  ) {
 	    isSuccessful

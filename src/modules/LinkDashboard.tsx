@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 
+import ImageViewer from '../components/ImageViewer'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -46,6 +48,7 @@ const LinkDetails = (props: Props): ReactElement => {
 
   return (
     <div className={classes.root}>
+      <ImageViewer url={data.businessPhoto} />
       <Typography>{data.businessName}</Typography>
       <Typography>{data.businessEmail}</Typography>
       <Typography>{data.businessContactNumber}</Typography>
