@@ -11,6 +11,8 @@ import LocationAutocomplete from '../components/LocationAutocomplete'
 import TextField from '@material-ui/core/TextField'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
+import ImageUploader from '../components/ImageUploader'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -39,6 +41,7 @@ const GenerateLink = (): ReactElement => {
   const [from, setFrom] = React.useState(null)
   const [contactNumber, setContactNumber] = React.useState('')
   const [businessName, setBusinessName] = React.useState('')
+  const [url, setUrl] = React.useState(null)
 
   const classes = useStyles()
   const router = useRouter()
@@ -65,6 +68,10 @@ const GenerateLink = (): ReactElement => {
 
   return (
     <div className={classes.root}>
+      <ImageUploader
+        url={url}
+        setUrl={setUrl}
+      />
       <TextField
         label={'Business Name'}
         required
