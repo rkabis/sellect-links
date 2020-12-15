@@ -81,7 +81,7 @@ const UseLink = (props: Props): ReactElement => {
     }
   }
 
-  const isButtonDisabled = to == null || loading
+  const isButtonDisabled = to == null || loading || customerNumber == '' || customerEmail == ''
 
   return (
     <div className={classes.root}>
@@ -91,12 +91,14 @@ const UseLink = (props: Props): ReactElement => {
       <Divider className={classes.divider} />
       <TextField
         label={'Customer Email'}
+        required
         className={classes.textField}
         value={customerEmail}
         onChange={e => setCustomerEmail(e.target.value)}
       />
       <TextField
-        label={'Customer Number'}
+        label={'Customer Mobile Number'}
+        required
         className={classes.textField}
         value={customerNumber}
         onChange={e => setCustomerNumber(e.target.value)}

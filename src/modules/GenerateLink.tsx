@@ -44,7 +44,7 @@ const GenerateLink = (): ReactElement => {
   const router = useRouter()
   const [createLink, { loading }] = useMutation(CREATE_LINK)
 
-  const isButtonDisabled = from == null || email == '' || businessName == '' || loading
+  const isButtonDisabled = from == null || email == '' || businessName == '' || loading || contactNumber == ''
 
   const handleConfirm = async () => {
     const { data } = await createLink({
@@ -86,6 +86,7 @@ const GenerateLink = (): ReactElement => {
       />
       <TextField
         label={'Contact Number'}
+        required
         className={classes.textField}
         value={contactNumber}
         onChange={e => setContactNumber(e.target.value)}

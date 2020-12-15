@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const CREATE_LINK = gql`
 	mutation CREATE_LINK(
-	  $businessContactNumber: String
+	  $businessContactNumber: String!
 	  $businessName: String!
 	  $businessEmail: String!
 	  $businessLocation: String!
@@ -24,8 +24,8 @@ export const CREATE_LINK = gql`
 export const CREATE_QUOTATION = gql`
 	mutation CREATE_QUOTATION(
 	  $linkId: String!
-	  $customerNumber: String
-	  $customerEmail: String
+	  $customerNumber: String!
+	  $customerEmail: String!
 	  $customerLocation: String!
 	  $vehicleType: String!
 	) {
