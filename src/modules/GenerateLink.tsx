@@ -81,19 +81,19 @@ const GenerateLink = (): ReactElement => {
         onChange={e => setBusinessName(e.target.value)}
       />
       <TextField
-        label={'Email'}
+        label={'Business Email'}
         required
         className={classes.textField}
         value={email}
         onChange={e => setEmail(e.target.value)}
       />
       <LocationAutocomplete
-        label='Pick-up Location'
+        label='Business Pick-up Location'
         value={from}
         setValue={setFrom}
       />
       <TextField
-        label={'Contact Number'}
+        label={'Business Contact Number'}
         required
         className={classes.textField}
         value={contactNumber}
