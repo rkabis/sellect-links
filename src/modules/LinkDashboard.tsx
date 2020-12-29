@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button'
 import ImageViewer from '../components/ImageViewer'
 import Header from '../components/Header'
 
+import QRCode from 'qrcode.react'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -59,6 +61,12 @@ const LinkDetails = (props: Props): ReactElement => {
         {`${data.businessHours.lower} - ${data.businessHours.upper}`}
       </Typography>
       <Typography>{`Views: ${data.views}`}</Typography>
+      <QRCode
+        value={`${window.location.hostname}/link?id=${data.linkId}`}
+        fgColor="#FFFFFF"
+        bgColor="#000000"
+        size={250}
+      />
       <Button
         variant='contained'
         onClick={() => handleCopy()}
