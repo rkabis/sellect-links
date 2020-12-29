@@ -16,6 +16,7 @@ import LocationAutocomplete from '../components/LocationAutocomplete'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import ImageViewer from '../components/ImageViewer'
+import Header from '../components/Header'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,6 +88,7 @@ const UseLink = (props: Props): ReactElement => {
 
   return (
     <div className={classes.root}>
+      <Header />
       <ImageViewer url={data.businessPhoto} />
       <Typography>{data.businessName}</Typography>
       <Typography>{data.businessContactNumber}</Typography>

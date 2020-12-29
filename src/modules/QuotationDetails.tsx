@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 
+import Header from '../components/Header'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -62,6 +64,7 @@ const QuotationDetails = (props: Props): ReactElement => {
 
   return (
     <div className={classes.root}>
+      <Header />
       <div className={classes.origin}>
         <Typography>{data.origin.location}</Typography>
         <Button

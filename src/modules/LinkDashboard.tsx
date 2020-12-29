@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 
 import ImageViewer from '../components/ImageViewer'
+import Header from '../components/Header'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,6 +49,7 @@ const LinkDetails = (props: Props): ReactElement => {
 
   return (
     <div className={classes.root}>
+      <Header />
       <ImageViewer url={data.businessPhoto} />
       <Typography>{data.businessName}</Typography>
       <Typography>{data.businessEmail}</Typography>
