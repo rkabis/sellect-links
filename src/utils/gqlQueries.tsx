@@ -17,6 +17,7 @@ export const VIEW_LINK = gql`
 export const VIEW_QUOTATION = gql`
 	query VIEW_QUOTATION($quotationId: String!) {
 	  getQuotation(quotationId: $quotationId) {
+	  	quotationId
 	    vehicleType
 	    origin {
 	      location

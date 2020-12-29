@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     alignItems: 'center',
     paddingTop: theme.spacing(3)
+  },
+  button: {
+    marginTop: theme.spacing(1)
   }
 }))
 
@@ -21,7 +25,24 @@ interface Props {
 
 const QuotationDetails = (props: Props): ReactElement => {
   const { data } = props
+  const [hasCopied, setHasCopied] = React.useState(false)
   const classes = useStyles()
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      const url = `/quotation?id=${data.quotationId}`
+      navigator.share({
+        title: 'Sellect Links',
+        text: 'Share your link!',
+        url
+      })
+    } else {
+      const url = `${window.location.hostname}/quotation?id=${data.quotationId}`
+
+      navigator.clipboard.writeText(url)
+      setHasCopied(true)
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -38,6 +59,14 @@ const QuotationDetails = (props: Props): ReactElement => {
           )
         })
       }
+      <Button
+        variant='contained'
+        onClick={() => handleShare()}
+        className={classes.button}
+        disabled={hasCopied}
+      >
+        { hasCopied ? 'Copied' : 'Share' }
+      </Button>
     </div>
   )
 }
