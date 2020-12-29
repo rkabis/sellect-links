@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import ImageUploader from '../components/ImageUploader'
+import Header from '../components/Header'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,6 +70,7 @@ const GenerateLink = (): ReactElement => {
 
   return (
     <div className={classes.root}>
+      <Header />
       <ImageUploader
         url={url}
         setUrl={setUrl}
