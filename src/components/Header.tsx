@@ -7,7 +7,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: theme.spacing(1)
   },
   button: {
     marginLeft: theme.spacing(2)
