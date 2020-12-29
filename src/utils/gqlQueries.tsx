@@ -10,6 +10,10 @@ export const VIEW_LINK = gql`
 	    linkId
 	    views
 	    businessPhoto
+	    businessHours {
+	      upper
+	      lower
+	    }
 	  }
 	}
 `

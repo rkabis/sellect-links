@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button'
 import LocationAutocomplete from '../components/LocationAutocomplete'
 import TextField from '@material-ui/core/TextField'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import Typography from '@material-ui/core/Typography'
 
 import ImageUploader from '../components/ImageUploader'
 import Header from '../components/Header'
@@ -34,6 +35,17 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     width: 300
+  },
+  hoursField: {
+    width: 50
+  },
+  hoursDiv: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    width: 300,
+    justifyContent: 'space-between',
+    marginTop: theme.spacing(1)
   }
 }))
 
@@ -42,6 +54,8 @@ const GenerateLink = (): ReactElement => {
   const [from, setFrom] = React.useState(null)
   const [contactNumber, setContactNumber] = React.useState('')
   const [businessName, setBusinessName] = React.useState('')
+  const [lower, setLower] = React.useState('')
+  const [upper, setUpper] = React.useState('')
   const [url, setUrl] = React.useState(null)
 
   const classes = useStyles()
@@ -57,7 +71,11 @@ const GenerateLink = (): ReactElement => {
         businessEmail: email,
         businessLocation: from,
         businessContactNumber: contactNumber,
-        businessPhoto: url
+        businessPhoto: url,
+        businessHours: {
+          lower: lower,
+          upper: upper
+        }
       }
     })
 
@@ -101,6 +119,20 @@ const GenerateLink = (): ReactElement => {
         value={contactNumber}
         onChange={e => setContactNumber(e.target.value)}
       />
+      <div className={classes.hoursDiv}>
+        <TextField
+          className={classes.hoursField}
+          value={lower}
+          onChange={e => setLower(e.target.value)}
+        />
+        {' — '}
+        <TextField
+          className={classes.hoursField}
+          value={upper}
+          onChange={e => setUpper(e.target.value)}
+        />
+        <Typography color="textSecondary">{'Business Hours'}</Typography>
+      </div>
       <Button
         variant='contained'
         className={classes.button}

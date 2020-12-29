@@ -92,6 +92,9 @@ const UseLink = (props: Props): ReactElement => {
       <ImageViewer url={data.businessPhoto} />
       <Typography>{data.businessName}</Typography>
       <Typography>{data.businessContactNumber}</Typography>
+      <Typography>
+        {`${data.businessHours.lower} - ${data.businessHours.upper}`}
+      </Typography>
       <Typography>{data.businessLocation}</Typography>
       <Divider className={classes.divider} />
       <TextField

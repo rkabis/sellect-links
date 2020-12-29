@@ -55,6 +55,9 @@ const LinkDetails = (props: Props): ReactElement => {
       <Typography>{data.businessEmail}</Typography>
       <Typography>{data.businessContactNumber}</Typography>
       <Typography>{data.businessLocation}</Typography>
+      <Typography>
+        {`${data.businessHours.lower} - ${data.businessHours.upper}`}
+      </Typography>
       <Typography>{`Views: ${data.views}`}</Typography>
       <Button
         variant='contained'
