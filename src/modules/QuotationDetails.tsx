@@ -16,6 +16,14 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: theme.spacing(1)
+  },
+  origin: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'baseline'
+  },
+  originButton: {
+    marginLeft: theme.spacing(2)
   }
 }))
 
@@ -26,9 +34,10 @@ interface Props {
 const QuotationDetails = (props: Props): ReactElement => {
   const { data } = props
   const [hasCopied, setHasCopied] = React.useState(false)
+  const [hasCopiedOrigin, setHasCopiedOrigin] = React.useState(false)
   const classes = useStyles()
 
-  const handleShare = async () => {
+  const handleCopy = async () => {
     if (navigator.share) {
       const url = `/quotation?id=${data.quotationId}`
       navigator.share({
@@ -44,9 +53,26 @@ const QuotationDetails = (props: Props): ReactElement => {
     }
   }
 
+  const handleCopyOrigin = async () => {
+    const origin = data.origin.location
+
+    navigator.clipboard.writeText(origin)
+    setHasCopiedOrigin(true)
+  }
+
   return (
     <div className={classes.root}>
-      <Typography>{data.origin.location}</Typography>
+      <div className={classes.origin}>
+        <Typography>{data.origin.location}</Typography>
+        <Button
+          variant='contained'
+          onClick={() => handleCopyOrigin()}
+          disabled={hasCopiedOrigin}
+          className={classes.originButton}
+        >
+          { hasCopiedOrigin ? 'Copied' : 'Copy' }
+        </Button>
+      </div>
       <Typography>{data.destination.location}</Typography>
       <Typography>{data.distance}</Typography>
       <Typography>{data.duration}</Typography>
@@ -61,7 +87,7 @@ const QuotationDetails = (props: Props): ReactElement => {
       }
       <Button
         variant='contained'
-        onClick={() => handleShare()}
+        onClick={() => handleCopy()}
         className={classes.button}
         disabled={hasCopied}
       >

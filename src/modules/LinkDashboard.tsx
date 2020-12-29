@@ -30,7 +30,7 @@ const LinkDetails = (props: Props): ReactElement => {
   const [hasCopied, setHasCopied] = React.useState(false)
   const classes = useStyles()
 
-  const handleShare = async () => {
+  const handleCopy = async () => {
     if (navigator.share) {
       const url = `/link?id=${data.linkId}`
       navigator.share({
@@ -56,7 +56,7 @@ const LinkDetails = (props: Props): ReactElement => {
       <Typography>{`Views: ${data.views}`}</Typography>
       <Button
         variant='contained'
-        onClick={() => handleShare()}
+        onClick={() => handleCopy()}
         className={classes.button}
         disabled={hasCopied}
       >
