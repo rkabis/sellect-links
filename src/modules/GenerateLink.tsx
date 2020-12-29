@@ -81,7 +81,7 @@ const GenerateLink = (): ReactElement => {
 
     if (data) {
       if (data.createLink.isSuccessful) {
-        router.push(`/dashboard?id=${data.createLink.linkId}`)
+        router.push(`/success?email=${email}`)
       }
     }
   }
