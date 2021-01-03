@@ -70,6 +70,8 @@ const LinkDetails = (props: Props): ReactElement => {
       </Typography>
       <Divider className={classes.divider} />
       <Typography>{`Views: ${data.views}`}</Typography>
+      <Typography>{`Quotations: ${data.quotations}`}</Typography>
+      <Divider className={classes.divider} />
       <QRCode
         value={`${window.location.hostname}/link?id=${data.linkId}`}
         fgColor="#FFFFFF"

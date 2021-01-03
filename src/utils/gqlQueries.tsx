@@ -9,6 +9,7 @@ export const VIEW_LINK = gql`
 	    businessContactNumber
 	    linkId
 	    views
+	    quotations
 	    businessPhoto
 	    businessHours {
 	      upper
