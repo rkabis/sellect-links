@@ -19,6 +19,8 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import ImageViewer from '../components/ImageViewer'
 import Header from '../components/Header'
 
+import { isValidEmail } from '../utils/stringUtils'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -85,7 +87,7 @@ const UseLink = (props: Props): ReactElement => {
     }
   }
 
-  const isButtonDisabled = to == null || loading || customerNumber == '' || customerEmail == ''
+  const isButtonDisabled = !isValidEmail(customerEmail) || to == null || loading || customerNumber == '' || customerEmail == ''
 
   return (
     <div className={classes.root}>
@@ -104,6 +106,11 @@ const UseLink = (props: Props): ReactElement => {
         className={classes.textField}
         value={customerEmail}
         onChange={e => setCustomerEmail(e.target.value)}
+        error={!isValidEmail(customerEmail) && customerEmail.length > 0}
+        helperText={
+          !isValidEmail(customerEmail) &&
+                  customerEmail.length > 0 && 'Please enter valid email'
+        }
       />
       <TextField
         label={'Customer Mobile Number'}

@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import Alert from '@material-ui/lab/Alert'
 import Header from '../components/Header'
+import ImageUploader from '../components/ImageUploader'
 
 import DateFnsUtils from '@date-io/date-fns'
 import {
@@ -21,7 +22,7 @@ import {
   KeyboardTimePicker
 } from '@material-ui/pickers'
 
-import ImageUploader from '../components/ImageUploader'
+import { isValidEmail } from '../utils/stringUtils'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,7 +76,7 @@ const GenerateLink = (): ReactElement => {
   const router = useRouter()
   const [createLink, { loading }] = useMutation(CREATE_LINK)
 
-  const isButtonDisabled = from == null || email == '' || businessName == '' || loading || contactNumber == '' || lower == null || upper == null
+  const isButtonDisabled = !isValidEmail(email) || from == null || email == '' || businessName == '' || loading || contactNumber == '' || lower == null || upper == null
 
   const handleConfirm = async () => {
     const { data } = await createLink({
@@ -121,6 +122,11 @@ const GenerateLink = (): ReactElement => {
         className={classes.textField}
         value={email}
         onChange={e => setEmail(e.target.value)}
+        error={!isValidEmail(email) && email.length > 0}
+        helperText={
+          !isValidEmail(email) &&
+                  email.length > 0 && 'Please enter valid email'
+        }
       />
       <LocationAutocomplete
         label='Business Pick-up Location'
