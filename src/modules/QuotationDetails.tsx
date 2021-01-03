@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import Divider from '@material-ui/core/Divider'
 
 import Header from '../components/Header'
 
@@ -26,6 +27,13 @@ const useStyles = makeStyles((theme) => ({
   },
   originButton: {
     marginLeft: theme.spacing(2)
+  },
+  divider: {
+    height: 1,
+    width: 400,
+    backgroundColor: 'gray',
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1)
   }
 }))
 
@@ -76,7 +84,9 @@ const QuotationDetails = (props: Props): ReactElement => {
           { hasCopiedOrigin ? 'Copied' : 'Copy' }
         </Button>
       </div>
+      <Divider className={classes.divider} />
       <Typography>{data.destination.location}</Typography>
+      <Divider className={classes.divider} />
       <Typography>{data.distance}</Typography>
       <Typography>{data.duration}</Typography>
       {
