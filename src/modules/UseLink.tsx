@@ -14,6 +14,7 @@ import Select from '@material-ui/core/Select'
 import TextField from '@material-ui/core/TextField'
 import LocationAutocomplete from '../components/LocationAutocomplete'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import InputAdornment from '@material-ui/core/InputAdornment'
 
 import ImageViewer from '../components/ImageViewer'
 import Header from '../components/Header'
@@ -110,6 +111,9 @@ const UseLink = (props: Props): ReactElement => {
         className={classes.textField}
         value={customerNumber}
         onChange={e => setCustomerNumber(e.target.value)}
+        InputProps={{
+          startAdornment: <InputAdornment position="start">{'(+63)'}</InputAdornment>
+        }}
       />
       <LocationAutocomplete
         label='Delivery Location'
