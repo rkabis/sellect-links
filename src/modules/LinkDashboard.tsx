@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import Divider from '@material-ui/core/Divider'
 
 import ImageViewer from '../components/ImageViewer'
 import Header from '../components/Header'
@@ -21,6 +22,13 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: theme.spacing(1)
+  },
+  divider: {
+    height: 1,
+    width: 400,
+    backgroundColor: 'gray',
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1)
   }
 }))
 
@@ -60,6 +68,7 @@ const LinkDetails = (props: Props): ReactElement => {
       <Typography>
         {`${data.businessHours.lower} - ${data.businessHours.upper}`}
       </Typography>
+      <Divider className={classes.divider} />
       <Typography>{`Views: ${data.views}`}</Typography>
       <QRCode
         value={`${window.location.hostname}/link?id=${data.linkId}`}
