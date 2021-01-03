@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Typography from '@material-ui/core/Typography'
 import InputAdornment from '@material-ui/core/InputAdornment'
+import Alert from '@material-ui/lab/Alert'
 import Header from '../components/Header'
 
 import ImageUploader from '../components/ImageUploader'
@@ -58,6 +59,7 @@ const GenerateLink = (): ReactElement => {
   const [lower, setLower] = React.useState('')
   const [upper, setUpper] = React.useState('')
   const [url, setUrl] = React.useState(null)
+  const [isError, setIsError] = React.useState(false)
 
   const classes = useStyles()
   const router = useRouter()
@@ -83,6 +85,8 @@ const GenerateLink = (): ReactElement => {
     if (data) {
       if (data.createLink.isSuccessful) {
         router.push(`/success?email=${email}`)
+      } else {
+        setIsError(true)
       }
     }
   }
@@ -145,6 +149,7 @@ const GenerateLink = (): ReactElement => {
       >
         { loading ? <CircularProgress /> : 'CONFIRM' }
       </Button>
+      { isError && <Alert severity="error">{'Please try again.'}</Alert> }
     </div>
   )
 }
