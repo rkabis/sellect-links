@@ -11,6 +11,7 @@ import LocationAutocomplete from '../components/LocationAutocomplete'
 import TextField from '@material-ui/core/TextField'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Typography from '@material-ui/core/Typography'
+import InputAdornment from '@material-ui/core/InputAdornment'
 import Header from '../components/Header'
 
 import ImageUploader from '../components/ImageUploader'
@@ -118,6 +119,9 @@ const GenerateLink = (): ReactElement => {
         className={classes.textField}
         value={contactNumber}
         onChange={e => setContactNumber(e.target.value)}
+        InputProps={{
+          startAdornment: <InputAdornment position="start">{'(+63)'}</InputAdornment>
+        }}
       />
       <div className={classes.hoursDiv}>
         <TextField
