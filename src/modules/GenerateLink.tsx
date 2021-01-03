@@ -63,9 +63,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const GenerateLink = (): ReactElement => {
-  const [email, setEmail] = React.useState('')
+  const [businessEmail, setBusinessEmail] = React.useState('')
   const [from, setFrom] = React.useState(null)
-  const [contactNumber, setContactNumber] = React.useState('')
+  const [businessContactNumber, setBusinessContactNumber] = React.useState('')
   const [businessName, setBusinessName] = React.useState('')
   const [lower, setLower] = React.useState(null)
   const [upper, setUpper] = React.useState(null)
@@ -76,15 +76,15 @@ const GenerateLink = (): ReactElement => {
   const router = useRouter()
   const [createLink, { loading }] = useMutation(CREATE_LINK)
 
-  const isButtonDisabled = !isValidEmail(email) || from == null || email == '' || businessName == '' || loading || contactNumber == '' || lower == null || upper == null
+  const isButtonDisabled = !isValidEmail(businessEmail) || from == null || businessEmail == '' || businessName == '' || loading || businessContactNumber == '' || lower == null || upper == null
 
   const handleConfirm = async () => {
     const { data } = await createLink({
       variables: {
-        businessName: businessName,
-        businessEmail: email,
+        businessName,
+        businessEmail,
         businessLocation: from,
-        businessContactNumber: contactNumber,
+        businessContactNumber,
         businessPhoto: url,
         businessHours: {
           lower: lower.toLocaleTimeString(),
@@ -95,7 +95,7 @@ const GenerateLink = (): ReactElement => {
 
     if (data) {
       if (data.createLink.isSuccessful) {
-        router.push(`/success?email=${email}`)
+        router.push(`/success?email=${businessEmail}`)
       } else {
         setIsError(true)
       }
@@ -120,12 +120,12 @@ const GenerateLink = (): ReactElement => {
         label={'Business Email'}
         required
         className={classes.textField}
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-        error={!isValidEmail(email) && email.length > 0}
+        value={businessEmail}
+        onChange={e => setBusinessEmail(e.target.value)}
+        error={!isValidEmail(businessEmail) && businessEmail.length > 0}
         helperText={
-          !isValidEmail(email) &&
-                  email.length > 0 && 'Please enter valid email'
+          !isValidEmail(businessEmail) &&
+                  businessEmail.length > 0 && 'Please enter valid email'
         }
       />
       <LocationAutocomplete
@@ -137,8 +137,8 @@ const GenerateLink = (): ReactElement => {
         label={'Business Contact Number'}
         required
         className={classes.textField}
-        value={contactNumber}
-        onChange={e => setContactNumber(e.target.value)}
+        value={businessContactNumber}
+        onChange={e => setBusinessContactNumber(e.target.value)}
         InputProps={{
           startAdornment: <InputAdornment position="start">{'(+63)'}</InputAdornment>
         }}
