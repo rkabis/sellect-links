@@ -15,6 +15,12 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import Alert from '@material-ui/lab/Alert'
 import Header from '../components/Header'
 
+import DateFnsUtils from '@date-io/date-fns'
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker
+} from '@material-ui/pickers'
+
 import ImageUploader from '../components/ImageUploader'
 
 const useStyles = makeStyles((theme) => ({
@@ -38,16 +44,20 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     width: 300
   },
-  hoursField: {
-    width: 50
+  timeField: {
+    width: 150
   },
-  hoursDiv: {
+  timeDiv: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'baseline',
+    alignItems: 'center',
     width: 300,
     justifyContent: 'space-between',
     marginTop: theme.spacing(1)
+  },
+  pickersDiv: {
+    display: 'flex',
+    flexDirection: 'column'
   }
 }))
 
@@ -56,8 +66,8 @@ const GenerateLink = (): ReactElement => {
   const [from, setFrom] = React.useState(null)
   const [contactNumber, setContactNumber] = React.useState('')
   const [businessName, setBusinessName] = React.useState('')
-  const [lower, setLower] = React.useState('')
-  const [upper, setUpper] = React.useState('')
+  const [lower, setLower] = React.useState(null)
+  const [upper, setUpper] = React.useState(null)
   const [url, setUrl] = React.useState(null)
   const [isError, setIsError] = React.useState(false)
 
@@ -65,7 +75,7 @@ const GenerateLink = (): ReactElement => {
   const router = useRouter()
   const [createLink, { loading }] = useMutation(CREATE_LINK)
 
-  const isButtonDisabled = from == null || email == '' || businessName == '' || loading || contactNumber == ''
+  const isButtonDisabled = from == null || email == '' || businessName == '' || loading || contactNumber == '' || lower == null || upper == null
 
   const handleConfirm = async () => {
     const { data } = await createLink({
@@ -76,8 +86,8 @@ const GenerateLink = (): ReactElement => {
         businessContactNumber: contactNumber,
         businessPhoto: url,
         businessHours: {
-          lower: lower,
-          upper: upper
+          lower: lower.toLocaleTimeString(),
+          upper: upper.toLocaleTimeString()
         }
       }
     })
@@ -127,19 +137,24 @@ const GenerateLink = (): ReactElement => {
           startAdornment: <InputAdornment position="start">{'(+63)'}</InputAdornment>
         }}
       />
-      <div className={classes.hoursDiv}>
-        <TextField
-          className={classes.hoursField}
-          value={lower}
-          onChange={e => setLower(e.target.value)}
-        />
-        {' — '}
-        <TextField
-          className={classes.hoursField}
-          value={upper}
-          onChange={e => setUpper(e.target.value)}
-        />
-        <Typography color="textSecondary">{'Business Hours'}</Typography>
+      <div className={classes.timeDiv}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <div className={classes.pickersDiv}>
+            <KeyboardTimePicker
+              className={classes.timeField}
+              value={lower}
+              onChange={setLower}
+              views={['hours', 'minutes']}
+            />
+            <KeyboardTimePicker
+              className={classes.timeField}
+              value={upper}
+              onChange={setUpper}
+              views={['hours', 'minutes']}
+            />
+          </div>
+        </MuiPickersUtilsProvider>
+        <Typography color="textSecondary">{'Business Hours *'}</Typography>
       </div>
       <Button
         variant='contained'
