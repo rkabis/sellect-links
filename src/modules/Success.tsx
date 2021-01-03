@@ -27,7 +27,7 @@ const Success = (props: Props): ReactElement => {
 
   return (
     <div className={classes.root}>
-      <Header />
+      <Header needHelp={false} />
       <Typography>
         {`Success! We've sent your Sellect Express Link to ${email}`}
       </Typography>

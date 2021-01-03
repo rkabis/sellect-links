@@ -11,6 +11,7 @@ import LocationAutocomplete from '../components/LocationAutocomplete'
 import TextField from '@material-ui/core/TextField'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Typography from '@material-ui/core/Typography'
+import Header from '../components/Header'
 
 import ImageUploader from '../components/ImageUploader'
 
@@ -87,6 +88,7 @@ const GenerateLink = (): ReactElement => {
 
   return (
     <div className={classes.root}>
+      <Header needHelp={false} />
       <ImageUploader
         url={url}
         setUrl={setUrl}

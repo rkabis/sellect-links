@@ -15,15 +15,24 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Header = (): ReactElement => {
+interface Props {
+  needHelp?: boolean;
+}
+
+const Header = (props: Props): ReactElement => {
+  const { needHelp } = props
   const classes = useStyles()
 
   return (
     <div className={classes.root}>
       <img src={'./white-logo.png'} width={200} />
-      <Button variant='contained' className={classes.button}>
-        {'Need Help?'}
-      </Button>
+      {
+        (needHelp) && (
+          <Button variant='contained' className={classes.button}>
+            {'Need Help?'}
+          </Button>
+        )
+      }
     </div>
   )
 }
