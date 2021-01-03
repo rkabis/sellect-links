@@ -13,7 +13,6 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import Typography from '@material-ui/core/Typography'
 
 import ImageUploader from '../components/ImageUploader'
-import Header from '../components/Header'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,7 +87,6 @@ const GenerateLink = (): ReactElement => {
 
   return (
     <div className={classes.root}>
-      <Header />
       <ImageUploader
         url={url}
         setUrl={setUrl}
