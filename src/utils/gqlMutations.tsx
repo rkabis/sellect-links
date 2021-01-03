@@ -28,7 +28,7 @@ export const CREATE_LINK = gql`
 export const CREATE_QUOTATION = gql`
 	mutation CREATE_QUOTATION(
 	  $linkId: String!
-	  $customerNumber: String!
+	  $customerContactNumber: String!
 	  $customerEmail: String!
 	  $customerLocation: String!
 	  $vehicleType: String!
@@ -37,7 +37,7 @@ export const CREATE_QUOTATION = gql`
 	    input: {
 	      linkId: $linkId
 	      customerEmail: $customerEmail
-	      customerNumber: $customerNumber
+	      customerContactNumber: $customerContactNumber
 	      customerLocation: $customerLocation
 	      vehicleType: $vehicleType
 	    }

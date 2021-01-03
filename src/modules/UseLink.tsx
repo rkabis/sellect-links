@@ -58,7 +58,7 @@ const UseLink = (props: Props): ReactElement => {
   const [to, setTo] = React.useState(null)
   const [size, setSize] = React.useState('small')
   const [customerEmail, setCustomerEmail] = React.useState('')
-  const [customerNumber, setCustomerNumber] = React.useState('')
+  const [customerContactNumber, setCustomerContactNumber] = React.useState('')
   const classes = useStyles()
   const router = useRouter()
 
@@ -73,7 +73,7 @@ const UseLink = (props: Props): ReactElement => {
     const { data: quotationData } = await createQuotation({
       variables: {
         linkId: data.linkId,
-        customerNumber,
+        customerContactNumber,
         customerEmail,
         customerLocation: to,
         vehicleType: size
@@ -87,7 +87,7 @@ const UseLink = (props: Props): ReactElement => {
     }
   }
 
-  const isButtonDisabled = !isValidEmail(customerEmail) || to == null || loading || customerNumber == '' || customerEmail == ''
+  const isButtonDisabled = !isValidEmail(customerEmail) || to == null || loading || customerContactNumber == '' || customerEmail == ''
 
   return (
     <div className={classes.root}>
@@ -116,8 +116,8 @@ const UseLink = (props: Props): ReactElement => {
         label={'Customer Mobile Number'}
         required
         className={classes.textField}
-        value={customerNumber}
-        onChange={e => setCustomerNumber(e.target.value)}
+        value={customerContactNumber}
+        onChange={e => setCustomerContactNumber(e.target.value)}
         InputProps={{
           startAdornment: <InputAdornment position="start">{'(+63)'}</InputAdornment>
         }}
