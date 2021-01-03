@@ -23,12 +23,24 @@ const Header = (props: Props): ReactElement => {
   const { needHelp } = props
   const classes = useStyles()
 
+  const handleHelpClick = () => {
+    const mail = 'mailto:sellectexpress@gmail.com'
+    const a = document.createElement('a')
+    a.href = mail
+    a.target='_blank'
+    a.click()
+  }
+
   return (
     <div className={classes.root}>
       <img src={'./white-logo.png'} width={200} />
       {
-        (needHelp) && (
-          <Button variant='contained' className={classes.button}>
+        (needHelp != false) && (
+          <Button
+            variant='contained'
+            className={classes.button}
+            onClick={() => handleHelpClick()}
+          >
             {'Need Help?'}
           </Button>
         )
