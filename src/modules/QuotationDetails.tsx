@@ -43,6 +43,11 @@ interface Props {
 
 const QuotationDetails = (props: Props): ReactElement => {
   const { data } = props
+  const {
+    quotationId,
+    tripDetails,
+    customerDetails,
+    businessDetails } = data
   const [hasCopied, setHasCopied] = React.useState(false)
   const [hasCopiedOrigin, setHasCopiedOrigin] = React.useState(false)
   const classes = useStyles()
@@ -56,7 +61,7 @@ const QuotationDetails = (props: Props): ReactElement => {
         url
       })
     } else {
-      const url = `${window.location.hostname}/quotation?id=${data.quotationId}`
+      const url = `${window.location.hostname}/quotation?id=${quotationId}`
 
       navigator.clipboard.writeText(url)
       setHasCopied(true)
@@ -64,7 +69,7 @@ const QuotationDetails = (props: Props): ReactElement => {
   }
 
   const handleCopyOrigin = async () => {
-    const origin = data.origin.location
+    const origin = tripDetails.origin.name
 
     navigator.clipboard.writeText(origin)
     setHasCopiedOrigin(true)
@@ -73,8 +78,13 @@ const QuotationDetails = (props: Props): ReactElement => {
   return (
     <div className={classes.root}>
       <Header />
+      <Typography>{businessDetails.businessName}</Typography>
+      <Typography>
+        {`${businessDetails.businessHours.lower} - ${businessDetails.businessHours.upper}`}
+      </Typography>
+      <Typography>{businessDetails.businessContactNumber}</Typography>
       <div className={classes.origin}>
-        <Typography>{data.origin.location}</Typography>
+        <Typography>{tripDetails.origin.name}</Typography>
         <Button
           variant='contained'
           onClick={() => handleCopyOrigin()}
@@ -85,12 +95,12 @@ const QuotationDetails = (props: Props): ReactElement => {
         </Button>
       </div>
       <Divider className={classes.divider} />
-      <Typography>{data.destination.location}</Typography>
+      <Typography>{tripDetails.destination.name}</Typography>
+      <Typography>{customerDetails.customerContactNumber}</Typography>
       <Divider className={classes.divider} />
-      <Typography>{data.distance}</Typography>
-      <Typography>{data.duration}</Typography>
+      <Typography>{`${tripDetails.duration} - ${tripDetails.distance}`}</Typography>
       {
-        data.fees.map((fee: any) => {
+        tripDetails.fees.map((fee: any) => {
           return (
             <Typography key={fee.provider}>
               {`${fee.provider}: ${fee.fee}`}

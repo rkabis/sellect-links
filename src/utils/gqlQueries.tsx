@@ -22,19 +22,36 @@ export const VIEW_LINK = gql`
 export const VIEW_QUOTATION = gql`
 	query VIEW_QUOTATION($quotationId: String!) {
 	  getQuotation(quotationId: $quotationId) {
-	  	quotationId
-	    vehicleType
-	    origin {
-	      location
+	    quotationId
+	    customerDetails {
+	      customerContactNumber
 	    }
-	    destination {
-	      location
+	    businessDetails {
+	      businessName
+	      businessContactNumber
+	      businessHours {
+	        upper
+	        lower
+	      }
 	    }
-	    distance
-	    duration
-	    fees {
-	      provider
-	      fee
+	    tripDetails {
+	      distance
+	      duration
+	      vehicleType
+	      fees {
+	        provider
+	        fee
+	      }
+	      origin {
+	        name
+	        lng
+	        lat
+	      }
+	      destination {
+	        name
+	        lng
+	        lat
+	      }
 	    }
 	  }
 	}
