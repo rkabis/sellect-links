@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
 
 import Header from '../components/Header'
+import BaseMap from '../components/BaseMap'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -98,6 +99,14 @@ const QuotationDetails = (props: Props): ReactElement => {
       <Typography>{tripDetails.destination.name}</Typography>
       <Typography>{customerDetails.customerContactNumber}</Typography>
       <Divider className={classes.divider} />
+      <BaseMap
+        points={
+          [
+            { lat: tripDetails.origin.lat, lng: tripDetails.origin.lng },
+            { lat: tripDetails.destination.lat, lng: tripDetails.destination.lng }
+          ]
+        }
+      />
       <Typography>{`${tripDetails.duration} - ${tripDetails.distance}`}</Typography>
       {
         tripDetails.fees.map((fee: any) => {
