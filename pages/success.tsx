@@ -1,18 +1,22 @@
 import React, { ReactElement } from 'react'
 import { NextPage } from 'next'
 
-import { useRouter } from 'next/router'
-
 import SuccessModule from '../src/modules/Success'
 
-const Success: NextPage = (): ReactElement => {
-  const router = useRouter()
+const Success: NextPage = (props: any): ReactElement => {
+  const { email } = props
 
   return (
     <div>
-      <SuccessModule email={router.query.email} />
+      <SuccessModule email={email} />
     </div>
   )
+}
+
+Success.getInitialProps = ctx => {
+  return {
+    email: ctx.query.email
+  }
 }
 
 export default Success
