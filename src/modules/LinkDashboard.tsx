@@ -34,10 +34,11 @@ const useStyles = makeStyles((theme) => ({
 
 interface Props {
   data: any;
+  hostname: string;
 }
 
 const LinkDetails = (props: Props): ReactElement => {
-  const { data } = props
+  const { data, hostname } = props
   const [hasCopied, setHasCopied] = React.useState(false)
   const classes = useStyles()
 
@@ -50,7 +51,7 @@ const LinkDetails = (props: Props): ReactElement => {
         url
       })
     } else {
-      const url = `${window.location.hostname}/link?id=${data.linkId}`
+      const url = `${hostname}/link?id=${data.linkId}`
 
       navigator.clipboard.writeText(url)
       setHasCopied(true)
@@ -73,7 +74,7 @@ const LinkDetails = (props: Props): ReactElement => {
       <Typography>{`Quotations: ${data.quotations}`}</Typography>
       <Divider className={classes.divider} />
       <QRCode
-        value={`${window.location.hostname}/link?id=${data.linkId}`}
+        value={`${hostname}/link?id=${data.linkId}`}
         fgColor="#FFFFFF"
         bgColor="#000000"
         size={250}

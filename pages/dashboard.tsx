@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react'
 import { NextPage } from 'next'
 
-import { useRouter } from 'next/router'
 import { VIEW_LINK } from '../src/utils/gqlQueries'
 
 import { useQuery } from '@apollo/react-hooks'
@@ -10,12 +9,12 @@ import LinkDashboardModule from '../src/modules/LinkDashboard'
 
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-const LinkDashboard: NextPage = (): ReactElement => {
-  const router = useRouter()
+const LinkDashboard: NextPage = (props: any): ReactElement => {
+  const { id, hostname } = props
 
   const { data, loading, error } = useQuery(VIEW_LINK, {
     variables: {
-      linkId: router.query.id
+      linkId: id
     }
   })
 
@@ -25,9 +24,20 @@ const LinkDashboard: NextPage = (): ReactElement => {
 
   return (
     <div>
-      { loading ? <CircularProgress /> : <LinkDashboardModule data={data.getLink} /> }
+      {
+        loading
+          ? <CircularProgress />
+          : <LinkDashboardModule data={data.getLink} hostname={hostname} />
+      }
     </div>
   )
+}
+
+LinkDashboard.getInitialProps = ctx => {
+  return {
+    id: ctx.query.id,
+    hostname: ctx.req.headers.host
+  }
 }
 
 export default LinkDashboard
