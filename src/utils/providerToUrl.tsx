@@ -38,6 +38,8 @@ const providerToUrl = (
     return 'https://www.grab.com/ph/'
   case 'Happymove':
     return 'https://online.happymove.com.ph/'
+  case 'Toktok':
+    return 'https://toktok.ph/home'
   default:
     return null
   }

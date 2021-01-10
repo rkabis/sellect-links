@@ -4,9 +4,13 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
+import Grid from '@material-ui/core/Grid'
 
 import Header from '../components/Header'
 import BaseMap from '../components/BaseMap'
+import Quotation from '../components/Quotation'
+
+import providerToUrl from '../utils/providerToUrl'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +39,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'gray',
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1)
+  },
+  grid: {
+    width: 350,
+    marginTop: theme.spacing(1),
   }
 }))
 
@@ -99,6 +107,7 @@ const QuotationDetails = (props: Props): ReactElement => {
       <Typography>{tripDetails.destination.name}</Typography>
       <Typography>{customerDetails.customerContactNumber}</Typography>
       <Divider className={classes.divider} />
+      <Typography>{`${tripDetails.duration} - ${tripDetails.distance}`}</Typography>
       <BaseMap
         points={
           [
@@ -107,16 +116,31 @@ const QuotationDetails = (props: Props): ReactElement => {
           ]
         }
       />
-      <Typography>{`${tripDetails.duration} - ${tripDetails.distance}`}</Typography>
-      {
-        tripDetails.fees.map((fee: any) => {
-          return (
-            <Typography key={fee.provider}>
-              {`${fee.provider}: ${fee.fee}`}
-            </Typography>
-          )
-        })
-      }
+      <Grid container spacing={1} className={classes.grid}>
+        {
+          tripDetails.fees.map((fee: any) => {
+            return (
+              <Grid
+                key={fee.provider}
+                item
+                xs={6}
+              >
+                <Quotation
+                  provider={fee.provider}
+                  fee={fee.fee}
+                  url={providerToUrl(
+                    fee.provider,
+                    tripDetails.origin,
+                    tripDetails.destination,
+                    tripDetails.vehicleType
+                  )}
+                  size={tripDetails.vehicleType}
+                />
+              </Grid>
+            )
+          })
+        }
+      </Grid>
       <Button
         variant='contained'
         onClick={() => handleCopy()}

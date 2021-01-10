@@ -29,6 +29,12 @@ export const sizeLabeler = (provider: string, size: string) => {
     'large': 'Van'
   }
 
+  const toktokObject: any = {
+    'small': 'Motorcycle',
+    'medium': 'Motorcycle',
+    'large': 'Motorcycle'
+  }
+
   switch (provider) {
   case 'Grab':
     return grabObject[size]
@@ -40,6 +46,8 @@ export const sizeLabeler = (provider: string, size: string) => {
     return transportifyObject[size]
   case 'Happymove':
     return happymoveObject[size]
+  case 'Toktok':
+    return toktokObject[size]
   default:
     return null
   }

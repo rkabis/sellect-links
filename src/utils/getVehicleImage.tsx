@@ -5,15 +5,15 @@ const getVehicleImage = (size: string): React.ReactElement => {
   switch (size) {
   case 'Motorcycle':
     return (
-      <img src='./small.png' alt='small' height={40}/>
+      <img src='./small.png' alt='small' height={30}/>
     )
   case 'Car':
     return (
-      <img src='./medium.png' alt='medium' height={40}/>
+      <img src='./medium.png' alt='medium' height={30}/>
     )
   case 'Van':
     return (
-      <img src='./large.png' alt='large' height={40}/>
+      <img src='./large.png' alt='large' height={30}/>
     )
   case null:
     return <div></div>
