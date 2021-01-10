@@ -18,10 +18,13 @@ class MapComponent extends React.Component<any, {}> {
     const midpoint = findMidpoint(points)
 
     return (
-      <GoogleMap defaultZoom={12} defaultCenter={{ lat: midpoint.lat, lng: midpoint.lng }}>
+      <GoogleMap
+        defaultZoom={ points ? 12 : 5 }
+        defaultCenter={{ lat: midpoint.lat, lng: midpoint.lng }}
+      >
         <>
           {
-            points.map((point: any, index: number) => {
+            points && points.map((point: any, index: number) => {
               return (
                 <Marker key={index} position={{ lat: point.lat, lng: point.lng }} />
               )

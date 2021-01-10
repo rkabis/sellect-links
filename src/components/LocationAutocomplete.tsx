@@ -18,6 +18,24 @@ function loadScript(src: string, position: HTMLElement | null, id: string) {
   position.appendChild(script)
 }
 
+function getLatLng(placeId: string, callback: any) {
+  const geocoder = new (window as any).google.maps.Geocoder()
+
+  if (geocoder) {
+    geocoder.geocode({
+      'placeId': placeId
+    }, (responses: any, status: string) => {
+      if (status == 'OK') {
+        const lat = responses[0].geometry.location.lat()
+        const lng = responses[0].geometry.location.lng()
+
+        callback({ lat, lng })
+      }
+
+    })
+  }
+}
+
 const autocompleteService: any = { current: null }
 
 const useStyles = makeStyles((theme) => ({
@@ -45,10 +63,11 @@ interface Props {
   label: string;
   value?: PlaceType;
   setValue: any;
+  setLatLng?: any;
 }
 
 const LocationAutocomplete = (props: Props) => {
-  const { label, value, setValue } = props
+  const { label, value, setValue, setLatLng } = props
 
   const classes = useStyles()
   const [inputValue, setInputValue] = React.useState('')
@@ -128,7 +147,8 @@ const LocationAutocomplete = (props: Props) => {
       value={value}
       onChange={(event: any, newValue: any) => {
         setOptions(newValue ? [newValue, ...options] : options)
-        setValue(newValue.description)
+        setValue(newValue && newValue.description)
+        newValue && setLatLng && getLatLng(newValue.place_id, (e: any) => setLatLng(e))
       }}
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue)

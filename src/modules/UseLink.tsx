@@ -15,6 +15,7 @@ import TextField from '@material-ui/core/TextField'
 import LocationAutocomplete from '../components/LocationAutocomplete'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import InputAdornment from '@material-ui/core/InputAdornment'
+import BaseMap from '../components/BaseMap'
 
 import ImageViewer from '../components/ImageViewer'
 import Header from '../components/Header'
@@ -46,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     width: 300
+  },
+  map: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1)
   }
 }))
 
@@ -59,6 +64,7 @@ const UseLink = (props: Props): ReactElement => {
   const [size, setSize] = React.useState('small')
   const [customerEmail, setCustomerEmail] = React.useState('')
   const [customerContactNumber, setCustomerContactNumber] = React.useState('')
+  const [latLng, setLatLng] = React.useState()
   const classes = useStyles()
   const router = useRouter()
 
@@ -126,7 +132,11 @@ const UseLink = (props: Props): ReactElement => {
         label='Delivery Location'
         value={to}
         setValue={setTo}
+        setLatLng={(e: any) => setLatLng(e)}
       />
+      <div className={classes.map}>
+        <BaseMap points={(to && latLng) && [latLng]} />
+      </div>
       <Select
         value={size}
         className={classes.vehicleField}

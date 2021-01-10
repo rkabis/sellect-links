@@ -15,6 +15,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import Alert from '@material-ui/lab/Alert'
 import Header from '../components/Header'
 import ImageUploader from '../components/ImageUploader'
+import BaseMap from '../components/BaseMap'
 
 import DateFnsUtils from '@date-io/date-fns'
 import {
@@ -59,6 +60,10 @@ const useStyles = makeStyles((theme) => ({
   pickersDiv: {
     display: 'flex',
     flexDirection: 'column'
+  },
+  map: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1)
   }
 }))
 
@@ -71,6 +76,7 @@ const GenerateLink = (): ReactElement => {
   const [upper, setUpper] = React.useState(null)
   const [url, setUrl] = React.useState(null)
   const [isError, setIsError] = React.useState(false)
+  const [latLng, setLatLng] = React.useState()
 
   const classes = useStyles()
   const router = useRouter()
@@ -132,7 +138,11 @@ const GenerateLink = (): ReactElement => {
         label='Business Pick-up Location'
         value={from}
         setValue={setFrom}
+        setLatLng={(e: any) => setLatLng(e)}
       />
+      <div className={classes.map}>
+        <BaseMap points={(from && latLng) && [latLng]} />
+      </div>
       <TextField
         label={'Business Contact Number'}
         required

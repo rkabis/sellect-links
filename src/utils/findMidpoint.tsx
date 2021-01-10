@@ -4,6 +4,13 @@ type Coordinates = {
 }
 
 const findMidpoint = (points: Array<Coordinates>) => {
+  if (!points) {
+    return {
+      lat: 12.8797,
+      lng: 121.7740
+    }
+  }
+
   if (points.length > 1) {
     const midLat = (points[0].lat + points[1].lat) / 2
     const midLng = (points[0].lng + points[1].lng) / 2
