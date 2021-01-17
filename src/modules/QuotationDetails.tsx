@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   grid: {
     width: 350,
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(1)
   }
 }))
 

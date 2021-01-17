@@ -21,6 +21,8 @@ class MapComponent extends React.Component<any, {}> {
       <GoogleMap
         defaultZoom={ points ? 12 : 5 }
         defaultCenter={{ lat: midpoint.lat, lng: midpoint.lng }}
+        zoom={ points ? 12 : 5 }
+        center={{ lat: midpoint.lat, lng: midpoint.lng }}
       >
         <>
           {
