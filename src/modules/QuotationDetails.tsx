@@ -60,7 +60,12 @@ const QuotationDetails = (props: Props): ReactElement => {
     businessDetails } = data
   const [hasCopied, setHasCopied] = React.useState(false)
   const [hasCopiedOrigin, setHasCopiedOrigin] = React.useState(false)
+  const [device, setDevice] = React.useState('')
   const classes = useStyles()
+
+  React.useEffect(() => {
+    setDevice(whatDevice())
+  }, [])
 
   const handleCopy = async () => {
     if (navigator.share) {
@@ -84,7 +89,6 @@ const QuotationDetails = (props: Props): ReactElement => {
     navigator.clipboard.writeText(origin)
     setHasCopiedOrigin(true)
   }
-  const device = whatDevice()
 
   return (
     <div className={classes.root}>
