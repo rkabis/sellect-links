@@ -11,6 +11,7 @@ import BaseMap from '../components/BaseMap'
 import Quotation from '../components/Quotation'
 
 import providerToUrl from '../utils/providerToUrl'
+import whatDevice from '../utils/whatDevice'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,6 +84,7 @@ const QuotationDetails = (props: Props): ReactElement => {
     navigator.clipboard.writeText(origin)
     setHasCopiedOrigin(true)
   }
+  const device = whatDevice()
 
   return (
     <div className={classes.root}>
@@ -132,7 +134,8 @@ const QuotationDetails = (props: Props): ReactElement => {
                     fee.provider,
                     tripDetails.origin,
                     tripDetails.destination,
-                    tripDetails.vehicleType
+                    tripDetails.vehicleType,
+                    device
                   )}
                   size={tripDetails.vehicleType}
                 />
