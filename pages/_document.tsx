@@ -54,7 +54,7 @@ class MyDocument extends Document {
           <link
             rel={'icon'}
             type={'image/x-icon'}
-            href={'/small-black-logo.png'}
+            href={'/favicon.png'}
           />
           <link
             rel={'stylesheet'}
