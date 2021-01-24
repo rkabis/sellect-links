@@ -84,7 +84,7 @@ const QuotationDetails = (props: Props): ReactElement => {
   }
 
   const reducer = (state: any, action: any) => {
-    return { ...state, [action.field]: true }
+    return { ...initialCopyState, [action.field]: true }
   }
 
   const [copyState, dispatch] = React.useReducer(reducer, initialCopyState)
