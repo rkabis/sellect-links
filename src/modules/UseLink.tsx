@@ -19,6 +19,7 @@ import BaseMap from '../components/BaseMap'
 
 import ImageViewer from '../components/ImageViewer'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 import { isValidEmail } from '../utils/stringUtils'
 
@@ -162,6 +163,7 @@ const UseLink = (props: Props): ReactElement => {
       >
         { loading ? <CircularProgress /> : 'QUOTE' }
       </Button>
+      <Footer />
     </div>
   )
 }

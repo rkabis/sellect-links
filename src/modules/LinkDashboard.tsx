@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider'
 
 import ImageViewer from '../components/ImageViewer'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 import QRCode from 'qrcode.react'
 
@@ -87,6 +88,7 @@ const LinkDetails = (props: Props): ReactElement => {
       >
         { hasCopied ? 'Copied' : 'Share' }
       </Button>
+      <Footer />
     </div>
   )
 }

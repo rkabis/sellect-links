@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,10 +28,11 @@ const Success = (props: Props): ReactElement => {
 
   return (
     <div className={classes.root}>
-      <Header needHelp={false} />
+      <Header />
       <Typography>
         {`Success! We've sent your Sellect Express Link to ${email}. Please check Primary, Social, and Promotions tabs.`}
       </Typography>
+      <Footer />
     </div>
   )
 }

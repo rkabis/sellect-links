@@ -109,7 +109,7 @@ const GenerateLink = (): ReactElement => {
 
   return (
     <div className={classes.root}>
-      <Header needHelp={false} />
+      <Header />
       <ImageUploader
         url={url}
         setUrl={setUrl}

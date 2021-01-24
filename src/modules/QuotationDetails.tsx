@@ -10,6 +10,7 @@ import Header from '../components/Header'
 import BaseMap from '../components/BaseMap'
 import Quotation from '../components/Quotation'
 import QuotationDialog from '../components/QuotationDialog'
+import Footer from '../components/Footer'
 
 import providerToUrl from '../utils/providerToUrl'
 import whatDevice from '../utils/whatDevice'
@@ -164,6 +165,7 @@ const QuotationDetails = (props: Props): ReactElement => {
       >
         { hasCopied ? 'Copied' : 'Share' }
       </Button>
+      <Footer />
     </div>
   )
 }
