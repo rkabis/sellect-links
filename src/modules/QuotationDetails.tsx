@@ -22,7 +22,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'black',
     width: '100%',
     alignItems: 'center',
-    paddingTop: theme.spacing(3)
+    paddingTop: theme.spacing(3),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1)
+    }
   },
   button: {
     marginTop: theme.spacing(1)
@@ -30,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
   field: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 400,
     alignItems: 'baseline',
     marginTop: theme.spacing(0.5),
     marginBottom: theme.spacing(0.5)
@@ -126,9 +131,11 @@ const QuotationDetails = (props: Props): ReactElement => {
           { copyState.businessName ? 'Copied' : 'Copy' }
         </Button>
       </div>
-      <Typography>
-        {`${businessDetails.businessHours.lower} - ${businessDetails.businessHours.upper}`}
-      </Typography>
+      <div className={classes.field}>
+        <Typography>
+          {`${businessDetails.businessHours.lower} - ${businessDetails.businessHours.upper}`}
+        </Typography>
+      </div>
       <div className={classes.field}>
         <Typography>{businessDetails.businessContactNumber}</Typography>
         <Button
