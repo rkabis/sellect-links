@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1)
   },
   aTag: {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    color: 'black'
   }
 }))
 
@@ -53,27 +54,26 @@ const Quotation = (props: Props): ReactElement => {
   return (
     <>
       <div className={classes.root}>
-        <Typography variant='h6'>
-          { (fee && vehicle) ? priceFormatter(fee) : ''}
-        </Typography>
-        <div className={classes.icons}>
-          <a
-            href={vehicle && url}
-            target="_blank"
-            className={classes.aTag}
-            rel="noreferrer"
-          >
+        <a
+          href={vehicle && url}
+          target="_blank"
+          className={classes.aTag}
+          rel="noreferrer"
+        >
+          <Typography variant='h6'>
+            { (fee && vehicle) ? priceFormatter(fee) : ''}
+          </Typography>
+          <div className={classes.icons}>
             {
               getProviderImage(provider)
             }
-          </a>
-          <div className={classes.vehicle}>
-            {
-              getVehicleImage(vehicle)
-            }
+            <div className={classes.vehicle}>
+              {
+                getVehicleImage(vehicle)
+              }
+            </div>
           </div>
-        </div>
-
+        </a>
       </div>
     </>
   )
