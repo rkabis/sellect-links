@@ -17,11 +17,27 @@ class MapComponent extends React.Component<any, {}> {
 
     const midpoint = findMidpoint(points)
 
+    const zoom = () => {
+      if (points) {
+        if (points.length == 1) {
+          return 17
+        } else {
+          const x = points[0]
+          const y = points[1]
+          const z = ((x.lat-y.lat)**2 + (x.lng - y.lng)**2)**(0.5)
+
+          return 10-Math.ceil(z)
+        }
+      } else {
+        return 5
+      }
+    }
+
     return (
       <GoogleMap
-        defaultZoom={ points ? 12 : 5 }
+        defaultZoom={zoom()}
         defaultCenter={{ lat: midpoint.lat, lng: midpoint.lng }}
-        zoom={ points ? 12 : 5 }
+        zoom={zoom()}
         center={{ lat: midpoint.lat, lng: midpoint.lng }}
       >
         <>
