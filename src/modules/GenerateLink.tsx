@@ -32,7 +32,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'black',
     width: '100%',
     alignItems: 'center',
-    paddingTop: theme.spacing(3)
+    paddingTop: theme.spacing(3),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1)
+    }
   },
   button: {
     marginTop: theme.spacing(3),

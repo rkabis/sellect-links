@@ -14,7 +14,15 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     width: '100%',
     alignItems: 'center',
-    paddingTop: theme.spacing(3)
+    paddingTop: theme.spacing(3),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1)
+    }
+  },
+  text: {
+    [theme.breakpoints.down('sm')]: {
+      marginTop: theme.spacing(10)
+    }
   }
 }))
 
@@ -29,7 +37,7 @@ const Success = (props: Props): ReactElement => {
   return (
     <div className={classes.root}>
       <Header />
-      <Typography>
+      <Typography className={classes.text}>
         {`Success! We've sent your Sellect Express Pick-up Page to ${email}. Please check Primary, Social, and Promotions tabs.`}
       </Typography>
       <Footer />
