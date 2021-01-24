@@ -111,6 +111,7 @@ const QuotationDetails = (props: Props): ReactElement => {
       </div>
       <Divider className={classes.divider} />
       <Typography>{tripDetails.destination.name}</Typography>
+      <Typography>{customerDetails.customerName}</Typography>
       <Typography>{customerDetails.customerContactNumber}</Typography>
       <Divider className={classes.divider} />
       <Typography>{`${tripDetails.duration} - ${tripDetails.distance}`}</Typography>

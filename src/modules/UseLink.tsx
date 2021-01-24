@@ -62,6 +62,7 @@ const UseLink = (props: Props): ReactElement => {
   const { data } = props
   const [to, setTo] = React.useState(null)
   const [size, setSize] = React.useState('small')
+  const [customerName, setCustomerName] = React.useState('')
   const [customerEmail, setCustomerEmail] = React.useState('')
   const [customerContactNumber, setCustomerContactNumber] = React.useState('')
   const [latLng, setLatLng] = React.useState()
@@ -79,6 +80,7 @@ const UseLink = (props: Props): ReactElement => {
     const { data: quotationData } = await createQuotation({
       variables: {
         linkId: data.linkId,
+        customerName,
         customerContactNumber,
         customerEmail,
         customerLocation: to,
@@ -93,7 +95,7 @@ const UseLink = (props: Props): ReactElement => {
     }
   }
 
-  const isButtonDisabled = !isValidEmail(customerEmail) || to == null || loading || customerContactNumber == '' || customerEmail == ''
+  const isButtonDisabled = !isValidEmail(customerEmail) || to == null || loading || customerContactNumber == '' || customerEmail == '' || customerName == ''
 
   return (
     <div className={classes.root}>
@@ -106,6 +108,13 @@ const UseLink = (props: Props): ReactElement => {
       </Typography>
       <Typography>{data.businessLocation}</Typography>
       <Divider className={classes.divider} />
+      <TextField
+        label={'Customer Name'}
+        required
+        className={classes.textField}
+        value={customerName}
+        onChange={e => setCustomerName(e.target.value)}
+      />
       <TextField
         label={'Customer Email'}
         required

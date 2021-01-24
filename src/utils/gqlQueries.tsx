@@ -24,6 +24,7 @@ export const VIEW_QUOTATION = gql`
 	  getQuotation(quotationId: $quotationId) {
 	    quotationId
 	    customerDetails {
+	    	customerName
 	      customerContactNumber
 	    }
 	    businessDetails {

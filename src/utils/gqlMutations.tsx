@@ -28,6 +28,7 @@ export const CREATE_LINK = gql`
 export const CREATE_QUOTATION = gql`
 	mutation CREATE_QUOTATION(
 	  $linkId: String!
+	  $customerName: String!
 	  $customerContactNumber: String!
 	  $customerEmail: String!
 	  $customerLocation: String!
@@ -36,6 +37,7 @@ export const CREATE_QUOTATION = gql`
 	  createQuotation(
 	    input: {
 	      linkId: $linkId
+	      customerName: $customerName
 	      customerEmail: $customerEmail
 	      customerContactNumber: $customerContactNumber
 	      customerLocation: $customerLocation
