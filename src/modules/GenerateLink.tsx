@@ -118,7 +118,7 @@ const GenerateLink = (): ReactElement => {
         setUrl={setUrl}
       />
       <TextField
-        label={'Business Name'}
+        label={'Seller Name'}
         required
         className={classes.textField}
         value={businessName}
@@ -137,7 +137,7 @@ const GenerateLink = (): ReactElement => {
         }
       />
       <LocationAutocomplete
-        label='Business Pick-up Location'
+        label='Seller Pick-up Location'
         value={from}
         setValue={setFrom}
         setLatLng={(e: any) => setLatLng(e)}
@@ -146,7 +146,7 @@ const GenerateLink = (): ReactElement => {
         <BaseMap points={(from && latLng) && [latLng]} />
       </div>
       <TextField
-        label={'Business Contact Number'}
+        label={'Seller Contact Number'}
         required
         className={classes.textField}
         value={businessContactNumber}
@@ -172,7 +172,7 @@ const GenerateLink = (): ReactElement => {
             />
           </div>
         </MuiPickersUtilsProvider>
-        <Typography color="textSecondary">{'Business Hours *'}</Typography>
+        <Typography color="textSecondary">{'Pick-up Hours *'}</Typography>
       </div>
       <Button
         variant='contained'
