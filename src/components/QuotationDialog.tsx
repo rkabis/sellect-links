@@ -43,7 +43,7 @@ const QuotationDialog = (props: Props) => {
             {'Hi there! To book, track, and contact your own same-day delivery, please copy-paste both pick-up and delivery details into your sellected courier\'s mobile app.'}
           </DialogContentText>
           <DialogContentText>
-            {'This is the free beta version of Sellect Express Pick-up Pages and we\'re continuoiusly working on improving your user experience.'}
+            {'This is the free beta version of Sellect Express Pick-up Pages and we\'re continuously working on improving your user experience.'}
           </DialogContentText>
         </DialogContent>
       </div>
