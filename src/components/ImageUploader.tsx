@@ -33,7 +33,6 @@ const ImageUploader = (props: Props): ReactElement => {
 
   return (
     <div className={classes.root}>
-      <ImageViewer url={url} />
       <label htmlFor={'logo'}>
         <div>
           <input
@@ -52,7 +51,8 @@ const ImageUploader = (props: Props): ReactElement => {
               }
             }}
           />
-          <div>{'Upload'}</div>
+          <ImageViewer url={url} />
+          <div>{'Upload Profile Pic'}</div>
         </div>
       </label>
     </div>
