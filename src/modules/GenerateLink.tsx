@@ -178,7 +178,7 @@ const GenerateLink = (): ReactElement => {
         onClick={(): Promise<void> => handleConfirm()}
         disabled={isButtonDisabled}
       >
-        { loading ? <CircularProgress /> : 'CONFIRM' }
+        { loading ? <CircularProgress /> : 'CREATE' }
       </Button>
       { isError && <Alert severity="error">{'Please try again.'}</Alert> }
     </div>
