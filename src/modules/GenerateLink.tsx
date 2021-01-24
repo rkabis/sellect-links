@@ -49,19 +49,22 @@ const useStyles = makeStyles((theme) => ({
     width: 300
   },
   timeField: {
-    width: 150
+    width: 130
   },
   timeDiv: {
     display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'column',
+    // alignItems: 'center',
     width: 300,
     justifyContent: 'space-between',
     marginTop: theme.spacing(1)
   },
   pickersDiv: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: 300,
+    justifyContent: 'space-between'
   },
   map: {
     marginTop: theme.spacing(1),
@@ -74,8 +77,8 @@ const GenerateLink = (): ReactElement => {
   const [from, setFrom] = React.useState(null)
   const [businessContactNumber, setBusinessContactNumber] = React.useState('')
   const [businessName, setBusinessName] = React.useState('')
-  const [lower, setLower] = React.useState(null)
-  const [upper, setUpper] = React.useState(null)
+  const [lower, setLower] = React.useState(new Date(2020, 12, 31, 9, 0, 0, 0))
+  const [upper, setUpper] = React.useState(new Date(2020, 12, 31, 18, 0, 0, 0))
   const [url, setUrl] = React.useState(null)
   const [isError, setIsError] = React.useState(false)
   const [latLng, setLatLng] = React.useState()
@@ -156,6 +159,7 @@ const GenerateLink = (): ReactElement => {
         }}
       />
       <div className={classes.timeDiv}>
+        <Typography color="textSecondary">{'Pick-up Hours *'}</Typography>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <div className={classes.pickersDiv}>
             <KeyboardTimePicker
@@ -164,6 +168,7 @@ const GenerateLink = (): ReactElement => {
               onChange={setLower}
               views={['hours', 'minutes']}
             />
+            &#8212;
             <KeyboardTimePicker
               className={classes.timeField}
               value={upper}
@@ -172,7 +177,6 @@ const GenerateLink = (): ReactElement => {
             />
           </div>
         </MuiPickersUtilsProvider>
-        <Typography color="textSecondary">{'Pick-up Hours *'}</Typography>
       </div>
       <Button
         variant='contained'
