@@ -93,8 +93,8 @@ const GenerateLink = (): ReactElement => {
         businessContactNumber,
         businessPhoto: url,
         businessHours: {
-          lower: lower.toLocaleTimeString(),
-          upper: upper.toLocaleTimeString()
+          lower: lower.toLocaleTimeString(navigator.language, { hour: '2-digit', minute:'2-digit' }),
+          upper: upper.toLocaleTimeString(navigator.language, { hour: '2-digit', minute:'2-digit' })
         }
       }
     })
