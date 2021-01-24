@@ -27,12 +27,14 @@ const useStyles = makeStyles((theme) => ({
   button: {
     marginTop: theme.spacing(1)
   },
-  origin: {
+  field: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
+    marginTop: theme.spacing(0.5),
+    marginBottom: theme.spacing(0.5)
   },
-  originButton: {
+  fieldButton: {
     marginLeft: theme.spacing(2)
   },
   divider: {
@@ -63,10 +65,24 @@ const QuotationDetails = (props: Props): ReactElement => {
     customerDetails,
     businessDetails } = data
   const [hasCopied, setHasCopied] = React.useState(false)
-  const [hasCopiedOrigin, setHasCopiedOrigin] = React.useState(false)
   const [device, setDevice] = React.useState('')
   const [open, setOpen] = React.useState(true)
   const classes = useStyles()
+
+  const initialCopyState = {
+    businessName: false,
+    businessContactNumber: false,
+    businessLocation: false,
+    customerName: false,
+    customerContactNumber: false,
+    customerLocation: false
+  }
+
+  const reducer = (state: any, action: any) => {
+    return { ...state, [action.field]: true }
+  }
+
+  const [copyState, dispatch] = React.useReducer(reducer, initialCopyState)
 
   React.useEffect(() => {
     setDevice(whatDevice())
@@ -88,11 +104,10 @@ const QuotationDetails = (props: Props): ReactElement => {
     }
   }
 
-  const handleCopyOrigin = async () => {
-    const origin = tripDetails.origin.name
+  const handleCopyField = (field: string, fieldValue: string) => {
+    navigator.clipboard.writeText(fieldValue)
 
-    navigator.clipboard.writeText(origin)
-    setHasCopiedOrigin(true)
+    dispatch({ field })
   }
 
   return (
@@ -100,27 +115,77 @@ const QuotationDetails = (props: Props): ReactElement => {
       <QuotationDialog open={open} handleClose={() => setOpen(false)} />
       <Header />
       <div className={classes.sectionTitle}><Typography variant="h6">{'Pick-up Details'}</Typography></div>
-      <Typography>{businessDetails.businessName}</Typography>
+      <div className={classes.field}>
+        <Typography>{businessDetails.businessName}</Typography>
+        <Button
+          variant='contained'
+          onClick={() => handleCopyField('businessName', businessDetails.businessName)}
+          disabled={copyState.businessName}
+          className={classes.fieldButton}
+        >
+          { copyState.businessName ? 'Copied' : 'Copy' }
+        </Button>
+      </div>
       <Typography>
         {`${businessDetails.businessHours.lower} - ${businessDetails.businessHours.upper}`}
       </Typography>
-      <Typography>{businessDetails.businessContactNumber}</Typography>
-      <div className={classes.origin}>
+      <div className={classes.field}>
+        <Typography>{businessDetails.businessContactNumber}</Typography>
+        <Button
+          variant='contained'
+          onClick={() => handleCopyField('businessContactNumber', businessDetails.businessContactNumber)}
+          disabled={copyState.businessContactNumber}
+          className={classes.fieldButton}
+        >
+          { copyState.businessContactNumber ? 'Copied' : 'Copy' }
+        </Button>
+      </div>
+      <div className={classes.field}>
         <Typography>{tripDetails.origin.name}</Typography>
         <Button
           variant='contained'
-          onClick={() => handleCopyOrigin()}
-          disabled={hasCopiedOrigin}
-          className={classes.originButton}
+          onClick={() => handleCopyField('businessLocation', tripDetails.origin.name)}
+          disabled={copyState.businessLocation}
+          className={classes.fieldButton}
         >
-          { hasCopiedOrigin ? 'Copied' : 'Copy' }
+          { copyState.businessLocation ? 'Copied' : 'Copy' }
         </Button>
       </div>
       <Divider className={classes.divider} />
       <div className={classes.sectionTitle}><Typography variant="h6">{'Delivery Details'}</Typography></div>
-      <Typography>{tripDetails.destination.name}</Typography>
-      <Typography>{customerDetails.customerName}</Typography>
-      <Typography>{customerDetails.customerContactNumber}</Typography>
+      <div className={classes.field}>
+        <Typography>{customerDetails.customerName}</Typography>
+        <Button
+          variant='contained'
+          onClick={() => handleCopyField('customerName', customerDetails.customerName)}
+          disabled={copyState.customerName}
+          className={classes.fieldButton}
+        >
+          { copyState.customerName ? 'Copied' : 'Copy' }
+        </Button>
+      </div>
+      <div className={classes.field}>
+        <Typography>{customerDetails.customerContactNumber}</Typography>
+        <Button
+          variant='contained'
+          onClick={() => handleCopyField('customerContactNumber', customerDetails.customerContactNumber)}
+          disabled={copyState.customerContactNumber}
+          className={classes.fieldButton}
+        >
+          { copyState.customerContactNumber ? 'Copied' : 'Copy' }
+        </Button>
+      </div>
+      <div className={classes.field}>
+        <Typography>{tripDetails.destination.name}</Typography>
+        <Button
+          variant='contained'
+          onClick={() => handleCopyField('customerLocation', tripDetails.destination.name)}
+          disabled={copyState.customerLocation}
+          className={classes.fieldButton}
+        >
+          { copyState.customerLocation ? 'Copied' : 'Copy' }
+        </Button>
+      </div>
       <Divider className={classes.divider} />
       <Typography>{`${tripDetails.duration} - ${tripDetails.distance}`}</Typography>
       <BaseMap
