@@ -32,12 +32,15 @@ const QuotationDialog = (props: Props) => {
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <div className={classes.root}>
-        <DialogTitle id="simple-dialog-title">{'Pick-Up Page'}<IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
-          <CloseIcon />
-        </IconButton></DialogTitle>
+        <DialogTitle id="simple-dialog-title">
+          {'How-To Use Pick-up Page'}
+          <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {'Hi there! To book, track, and contract your own same-day delivery, please copy-paste both pick-up and delivery details into your ellected courier\'s mobile app.'}
+            {'Hi there! To book, track, and contact your own same-day delivery, please copy-paste both pick-up and delivery details into your sellected courier\'s mobile app.'}
           </DialogContentText>
           <DialogContentText>
             {'This is the free beta version of Sellect Express Pick-up Pages and we\'re continuoiusly working on improving your user experience.'}

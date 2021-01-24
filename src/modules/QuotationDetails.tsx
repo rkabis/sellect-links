@@ -121,6 +121,11 @@ const QuotationDetails = (props: Props): ReactElement => {
       <Header />
       <div className={classes.sectionTitle}><Typography variant="h6">{'Pick-up Details'}</Typography></div>
       <div className={classes.field}>
+        <Typography>
+          {`${businessDetails.businessHours.lower} - ${businessDetails.businessHours.upper}`}
+        </Typography>
+      </div>
+      <div className={classes.field}>
         <Typography>{businessDetails.businessName}</Typography>
         <Button
           variant='contained'
@@ -130,11 +135,6 @@ const QuotationDetails = (props: Props): ReactElement => {
         >
           { copyState.businessName ? 'Copied' : 'Copy' }
         </Button>
-      </div>
-      <div className={classes.field}>
-        <Typography>
-          {`${businessDetails.businessHours.lower} - ${businessDetails.businessHours.upper}`}
-        </Typography>
       </div>
       <div className={classes.field}>
         <Typography>{businessDetails.businessContactNumber}</Typography>

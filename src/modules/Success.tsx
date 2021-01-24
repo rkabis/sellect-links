@@ -30,7 +30,7 @@ const Success = (props: Props): ReactElement => {
     <div className={classes.root}>
       <Header />
       <Typography>
-        {`Success! We've sent your Sellect Express Link to ${email}. Please check Primary, Social, and Promotions tabs.`}
+        {`Success! We've sent your Sellect Express Pick-up Page to ${email}. Please check Primary, Social, and Promotions tabs.`}
       </Typography>
       <Footer />
     </div>
