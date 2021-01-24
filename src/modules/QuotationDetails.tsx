@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid'
 import Header from '../components/Header'
 import BaseMap from '../components/BaseMap'
 import Quotation from '../components/Quotation'
+import QuotationDialog from '../components/QuotationDialog'
 
 import providerToUrl from '../utils/providerToUrl'
 import whatDevice from '../utils/whatDevice'
@@ -61,6 +62,7 @@ const QuotationDetails = (props: Props): ReactElement => {
   const [hasCopied, setHasCopied] = React.useState(false)
   const [hasCopiedOrigin, setHasCopiedOrigin] = React.useState(false)
   const [device, setDevice] = React.useState('')
+  const [open, setOpen] = React.useState(true)
   const classes = useStyles()
 
   React.useEffect(() => {
@@ -92,6 +94,7 @@ const QuotationDetails = (props: Props): ReactElement => {
 
   return (
     <div className={classes.root}>
+      <QuotationDialog open={open} handleClose={() => setOpen(false)} />
       <Header />
       <Typography>{businessDetails.businessName}</Typography>
       <Typography>
