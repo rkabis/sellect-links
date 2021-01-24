@@ -30,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'gray',
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1)
+  },
+  qr: {
+    padding: theme.spacing(5),
+    backgroundColor: '#f5f5f5'
   }
 }))
 
@@ -74,12 +78,12 @@ const LinkDetails = (props: Props): ReactElement => {
       <Typography>{`Views: ${data.views}`}</Typography>
       <Typography>{`Quotations: ${data.quotations}`}</Typography>
       <Divider className={classes.divider} />
-      <QRCode
-        value={`${hostname}/link?id=${data.linkId}`}
-        fgColor="#FFFFFF"
-        bgColor="#000000"
-        size={250}
-      />
+      <div className={classes.qr}>
+        <QRCode
+          value={`${hostname}/link?id=${data.linkId}`}
+          size={250}
+        />
+      </div>
       <Button
         variant='contained'
         onClick={() => handleCopy()}
