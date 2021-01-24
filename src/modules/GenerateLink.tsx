@@ -125,7 +125,7 @@ const GenerateLink = (): ReactElement => {
         onChange={e => setBusinessName(e.target.value)}
       />
       <TextField
-        label={'Business Email'}
+        label={'Seller Email'}
         required
         className={classes.textField}
         value={businessEmail}

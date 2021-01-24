@@ -52,7 +52,7 @@ const ImageUploader = (props: Props): ReactElement => {
             }}
           />
           <ImageViewer url={url} />
-          <div>{'Upload Profile Pic'}</div>
+          <div>{'Seller Profile Pic'}</div>
         </div>
       </label>
     </div>
