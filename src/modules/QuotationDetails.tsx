@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     width: 350,
     marginTop: theme.spacing(1)
+  },
+  sectionTitle: {
+    width: 400
   }
 }))
 
@@ -96,6 +99,7 @@ const QuotationDetails = (props: Props): ReactElement => {
     <div className={classes.root}>
       <QuotationDialog open={open} handleClose={() => setOpen(false)} />
       <Header />
+      <div className={classes.sectionTitle}><Typography variant="h6">{'Pick-up Details'}</Typography></div>
       <Typography>{businessDetails.businessName}</Typography>
       <Typography>
         {`${businessDetails.businessHours.lower} - ${businessDetails.businessHours.upper}`}
@@ -113,6 +117,7 @@ const QuotationDetails = (props: Props): ReactElement => {
         </Button>
       </div>
       <Divider className={classes.divider} />
+      <div className={classes.sectionTitle}><Typography variant="h6">{'Delivery Details'}</Typography></div>
       <Typography>{tripDetails.destination.name}</Typography>
       <Typography>{customerDetails.customerName}</Typography>
       <Typography>{customerDetails.customerContactNumber}</Typography>
