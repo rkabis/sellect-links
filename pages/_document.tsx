@@ -49,7 +49,7 @@ class MyDocument extends Document {
           />
           <meta
             property="og:description"
-            content="Search search search!"
+            content="Customer-booked same-day deliveries"
           />
           <link
             rel={'icon'}
