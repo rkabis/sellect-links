@@ -9,17 +9,17 @@ import { ServerStyleSheets } from '@material-ui/styles'
 import theme from 'src/config/theme'
 
 class MyDocument extends Document {
-  // setGoogleTags(): any {
-  //   return {
-  //     __html: `
-  //       window.dataLayer = window.dataLayer || [];
-  //       function gtag(){dataLayer.push(arguments);}
-  //       gtag('js', new Date());
+  setGoogleTags(): any {
+    return {
+      __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  //       gtag('config', 'UA-175012973-1');
-  //     `
-  //   }
-  // }
+        gtag('config', 'G-SV3LQ1TWGY');
+      `
+    }
+  }
 
   render(): ReactElement {
     return (
@@ -64,10 +64,8 @@ class MyDocument extends Document {
             rel={'stylesheet'}
             href={'https://fonts.googleapis.com/icon?family=Material+Icons'}
           />
-          {
-            // <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175012973-1"></script>
-            // <script dangerouslySetInnerHTML={this.setGoogleTags()} />
-          }
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV3LQ1TWGY"></script>
+          <script dangerouslySetInnerHTML={this.setGoogleTags()} />
         </Head>
         <body>
           <Main />
