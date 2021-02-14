@@ -35,6 +35,12 @@ export const sizeLabeler = (provider: string, size: string) => {
     'large': 'Motorcycle'
   }
 
+  const jgoObject: any = {
+    'small': 'Motorcycle',
+    'medium': 'Motorcycle',
+    'large': 'Motorcycle'
+  }
+
   switch (provider) {
   case 'Grab':
     return grabObject[size]
@@ -48,6 +54,8 @@ export const sizeLabeler = (provider: string, size: string) => {
     return happymoveObject[size]
   case 'Toktok':
     return toktokObject[size]
+  case 'JGO':
+    return jgoObject[size]
   default:
     return null
   }

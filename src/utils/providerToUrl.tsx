@@ -40,6 +40,8 @@ const providerToUrl = (
       return 'https://play.google.com/store/apps/details?id=my.happy.move&hl=en&gl=US'
     case 'Toktok':
       return 'https://play.google.com/store/apps/details?id=ph.cloudpanda.toktok&hl=en&gl=US'
+    case 'JGO':
+      return 'https://play.google.com/store/apps/details?id=ph.com.jgo.delivery'
     default:
       return null
     }
@@ -57,6 +59,8 @@ const providerToUrl = (
       return 'https://apps.apple.com/us/app/happy-move/id1438427540'
     case 'Toktok':
       return 'https://apps.apple.com/ph/app/toktok-ph/id1522988322'
+    case 'JGO':
+      return 'https://apps.apple.com/ph/app/jgo-rider/id1540719460'
     default:
       return null
     }
@@ -76,6 +80,8 @@ const providerToUrl = (
       return 'https://online.happymove.com.ph/'
     case 'Toktok':
       return 'https://toktok.ph/home'
+    case 'JGO':
+      return 'https://www.jgo.com.ph'
     default:
       return null
     }

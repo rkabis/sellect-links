@@ -58,6 +58,10 @@ const getProviderImage = (provider: string): React.ReactElement => {
         height={30}
       />
     )
+  case 'JGO':
+    return (
+      <img src='./jgo.png' alt='jgo' height={20}/>
+    )
   default:
     return (
       <Typography variant='h6'>
